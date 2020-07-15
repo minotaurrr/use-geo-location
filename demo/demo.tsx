@@ -21,3 +21,21 @@ export const Demo = ({ watch = true }: { watch?: boolean }) => {
 
   return <div>{error ? renderError({ message: error.message }) : renderContent()}</div>;
 };
+
+const TestComponent = () => {
+  const { latitude, longitude, loading, error, timestamp } = useGeoLocation();
+
+  return (
+    <>
+      {loading ? (
+        <span>Loading...</span>
+      ) : (
+        <div>
+          <span>latitude: {latitude}</span>
+          <br />
+          <span>longitude: {longitude}</span>
+        </div>
+      )}
+    </>
+  );
+};

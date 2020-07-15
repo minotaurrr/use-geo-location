@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Config } from 'use-geo-location';
 
 const defaultConfig: Config = {
-  enableHighAccuracy: true,
+  enableHighAccuracy: false,
   timeout: 10000,
   maximumAge: 0,
 };
@@ -24,9 +24,9 @@ export const useGeoLocation = ({ watch = false, config = defaultConfig }: { watc
       const positionError: PositionError = {
         code: -1,
         message: 'Geolocation not available',
-        PERMISSION_DENIED: 0,
-        POSITION_UNAVAILABLE: 0,
-        TIMEOUT: 0,
+        PERMISSION_DENIED: 1,
+        POSITION_UNAVAILABLE: 2,
+        TIMEOUT: 3,
       };
       setLoading(false);
       return setError(positionError);

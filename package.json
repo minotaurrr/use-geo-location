@@ -1,7 +1,7 @@
 {
   "name": "use-geo-location",
   "author": "Min Kim",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "main": "dist/useGeoLocation.min.js",
   "module": "dist/useGeoLocation.es.min.js",
