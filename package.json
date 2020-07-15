@@ -1,0 +1,61 @@
+{
+  "name": "use-geo-location",
+  "author": "Min Kim",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/useGeoLocation.min.js",
+  "module": "dist/useGeoLocation.es.min.js",
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "typescript": "~3.7.2"
+  },
+  "scripts": {
+    "storybook": "start-storybook",
+    "test": "react-scripts test",
+    "lint": "prettier './src/**/*.{js,ts,tsx}' --write",
+    "build": "rollup -c"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:minotaurrr/use-geo-location.git"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@rollup/plugin-babel": "^5.1.0",
+    "@rollup/plugin-typescript": "^5.0.2",
+    "@storybook/addon-info": "^5.3.19",
+    "@storybook/preset-typescript": "^3.0.0",
+    "@storybook/react": "^5.3.19",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^10.4.6",
+    "@testing-library/user-event": "^7.1.2",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "rollup": "^2.21.0",
+    "rollup-plugin-dts": "^1.4.8",
+    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-ts": "^1.2.28",
+    "rollup-plugin-uglify": "^6.0.4",
+    "ts-loader": "^8.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  }
+}
