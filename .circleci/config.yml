@@ -2,36 +2,55 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build-and-test:
-    executor:
-      name: node/default
+  build:
+    working_directory: ~/use-geo-location
+    executor: node/default
     steps:
       - checkout
-      - run:
-          command: |
-            echo "registry=https://registry.npmjs.org/" > ~/.npmrc
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-            yarn install --frozen-lockfile
-            yarn test
-            yarn build
+      - node/install-npm
+      - node/install-packages:
+          app-dir: ~/use-geo-location
+          cache-path: node_modules
+          override-ci-command: yarn
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  test:
+    - attach_workspace:
+        at: .
+    - run:
+        name: 'Testing'
+        command: yarn test
+
+  publish:
+    - attach_workspace:
+        at: .
+    - run:
+        name: 'Publishing'
+        command: |
+          yarn build
+          npm publish
   test-and-publish:
     executor:
       name: node/default
     steps:
       - checkout
       - run:
-          command: |
-            echo "registry=https://registry.npmjs.org/" > ~/.npmrc
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-            yarn install --frozen-lockfile
-            yarn test
-            npm publish
+          command: npm publish
 
 workflows:
-  build-and-test:
+  build-test-deploy:
     jobs:
-      - build-and-test
-      - test-and-publish:
+      - build
+      - test:
+          requires:
+            - build
+      - publish:
+          type: approval
+          requires:
+            - test
           filters:
             branches:
               only: master
