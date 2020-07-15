@@ -1,56 +1,36 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@3.0.1
 jobs:
-  build:
-    working_directory: ~/use-geo-location
-    executor: node/default
-    steps:
-      - checkout
-      - node/install-npm
-      - node/install-packages:
-          app-dir: ~/use-geo-location
-          cache-path: node_modules
-          override-ci-command: yarn
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-
-  test:
-    - attach_workspace:
-        at: .
-    - run:
-        name: 'Testing'
-        command: yarn test
-
-  publish:
-    - attach_workspace:
-        at: .
-    - run:
-        name: 'Publishing'
-        command: |
-          yarn build
-          npm publish
-  test-and-publish:
+  build-and-test:
     executor:
       name: node/default
+      tag: '13'
     steps:
       - checkout
+      - node/install-packages:
+          pkg-manager: yarn
       - run:
-          command: npm publish
+          name: 'Build and test'
+          command: 'yarn test'
+
+  publish:
+    executor: node/default
+    steps:
+      - run:
+          name: 'Publishing'
+          command: |
+            yarn build
+            npm publish
 
 workflows:
   build-test-deploy:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - build-and-test
       - publish:
           type: approval
           requires:
-            - test
+            - build-and-test
           filters:
             branches:
               only: master
