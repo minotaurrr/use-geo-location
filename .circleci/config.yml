@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.1
+  snyk: snyk/snyk@0.0.10
 jobs:
   build-and-test:
     executor: node/default
@@ -8,6 +9,7 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
+      - snyk/scan
       - run:
           name: 'Build and test'
           command: 'yarn test'

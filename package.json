@@ -1,8 +1,13 @@
 {
   "name": "use-geo-location",
-  "author": "Min Kim",
+  "author": {
+    "name": "Min Kim",
+    "email": "minkim030@gmail.com",
+    "url": "https://www.linkedin.com/in/min-kim-b8b110b8"
+  },
   "version": "0.1.1",
   "license": "MIT",
+  "description": "Custom react hook for getting user's location",
   "main": "dist/useGeoLocation.min.js",
   "module": "dist/useGeoLocation.es.min.js",
   "types": "dist/index.d.ts",
@@ -55,5 +60,15 @@
   },
   "peerDependencies": {
     "react": "^16.13.1"
-  }
+  },
+  "keywords": [
+    "geo-location",
+    "use-geo-location",
+    "geolocation",
+    "react-geo-location",
+    "react-geolocation",
+    "geo location",
+    "geolocation react"
+  ],
+  "bugs": "https://github.com/minotaurrr/use-geo-location/issues"
 }
