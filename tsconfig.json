@@ -2,16 +2,8 @@
   "compilerOptions": {
     "baseUrl": "src",
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "rootDirs": [
-      "src",
-      "stories",
-      "demo"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "rootDirs": ["src", "stories", "demo"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,13 +14,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "jsx": "react"
   },
-  "include": [
-    "src",
-    "demo",
-    "stories",
-    "src/index.d.ts"
-  ]
+  "include": ["src", "demo", "stories", "src/index.d.ts"]
 }
