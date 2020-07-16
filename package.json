@@ -18,13 +18,16 @@
     "@types/react-dom": "^16.9.0",
     "typescript": "~3.7.2",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "snyk": "^1.362.0"
   },
   "scripts": {
     "storybook": "start-storybook",
     "test": "react-scripts test",
     "lint": "prettier './src/**/*.{js,ts,tsx}' --write",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "husky": {
     "hooks": {
@@ -70,5 +73,6 @@
     "geo location",
     "geolocation react"
   ],
-  "bugs": "https://github.com/minotaurrr/use-geo-location/issues"
+  "bugs": "https://github.com/minotaurrr/use-geo-location/issues",
+  "snyk": true
 }
