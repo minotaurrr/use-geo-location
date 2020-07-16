@@ -1,8 +1,13 @@
 {
   "name": "use-geo-location",
-  "author": "Min Kim",
+  "author": {
+    "name": "Min Kim",
+    "email": "minkim030@gmail.com",
+    "url": "https://www.linkedin.com/in/min-kim-b8b110b8"
+  },
   "version": "0.1.1",
   "license": "MIT",
+  "description": "Custom react hook for getting user's location",
   "main": "dist/useGeoLocation.min.js",
   "module": "dist/useGeoLocation.es.min.js",
   "types": "dist/index.d.ts",
@@ -13,13 +18,15 @@
     "@types/react-dom": "^16.9.0",
     "typescript": "~3.7.2",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "snyk": "^1.362.0"
   },
   "scripts": {
     "storybook": "start-storybook",
     "test": "react-scripts test",
     "lint": "prettier './src/**/*.{js,ts,tsx}' --write",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "husky": {
     "hooks": {
@@ -51,9 +58,21 @@
     "rollup": "^2.21.0",
     "rollup-plugin-dts": "^1.4.8",
     "rollup-plugin-terser": "^6.1.0",
-    "ts-loader": "^8.0.0"
+    "ts-loader": "^8.0.0",
+    "react-scripts": "3.4.1"
   },
   "peerDependencies": {
     "react": "^16.13.1"
-  }
+  },
+  "keywords": [
+    "geo-location",
+    "use-geo-location",
+    "geolocation",
+    "react-geo-location",
+    "react-geolocation",
+    "geo location",
+    "geolocation react"
+  ],
+  "bugs": "https://github.com/minotaurrr/use-geo-location/issues",
+  "snyk": true
 }

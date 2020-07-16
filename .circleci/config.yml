@@ -22,7 +22,7 @@ jobs:
             npm publish
 
 workflows:
-  build-test-deploy:
+  CI-workflow:
     jobs:
       - build-and-test
       - publish:
