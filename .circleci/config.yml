@@ -15,6 +15,8 @@ jobs:
     executor: node/default
     steps:
       - checkout
+      - node/install-packages:
+          pkg-manager: yarn
       - run:
           name: 'Publish'
           command: |
