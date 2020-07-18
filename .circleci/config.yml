@@ -11,24 +11,31 @@ jobs:
       - run:
           name: 'Build and test'
           command: 'yarn test'
-
   publish:
     executor: node/default
     steps:
+      - checkout
       - run:
-          name: 'Publishing'
+          name: 'Publish'
           command: |
             yarn build
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
             npm publish
 
 workflows:
   CI-workflow:
     jobs:
       - build-and-test
-      - publish:
+      - hold:
           type: approval
           requires:
             - build-and-test
+          filters:
+            branches:
+              only: master
+      - publish:
+          requires:
+            - hold
           filters:
             branches:
               only: master
