@@ -36,7 +36,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              only: master
+              ignore: /.*/
       - publish:
           requires:
             - hold
@@ -44,4 +44,4 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              only: master
+              ignore: /.*/
