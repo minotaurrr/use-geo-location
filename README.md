@@ -50,7 +50,7 @@ const config = {
   timeout: 10000, // default value is 10000
   maximumAge: 0, // default value is 0
 }
-useGeoLocation({ watch: true, config })
+useGeoLocation({ watch: true, config }) // watch is set to `false` by default
 ```
 
 ### Options
