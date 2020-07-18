@@ -63,7 +63,7 @@ useGeoLocation({ watch: true, config })
 
 ### Watch parameter
 
-If `watch` is set to `true`, it'll continuously continuously attempt to get user's position, this is useful when user is using a mobile device.
+If `watch` is set to `true` (set to `true` by default), it'll continuously continuously attempt to get user's position, this is useful when user is using a mobile device.
 If it's set to true, it will fetch user's position on render and cache it. The cached value will be used until it reaches its `maximumAge`, set in options.
 
 # Error handling
