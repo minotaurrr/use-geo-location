@@ -2,16 +2,16 @@ import React from 'react';
 import { useGeoLocation } from 'useGeoLocation';
 import { GeoLocationOptions, GoogleMapsResults } from 'use-geo-location';
 
-export const Demo = ({ watch = false, useGoogleMaps = false }: { watch?: boolean; useGoogleMaps?: boolean }) => {
+export const Demo = ({ watch = false, useGoogleMaps = true }: { watch?: boolean; useGoogleMaps?: boolean }) => {
   const options: GeoLocationOptions = {
     watch,
-    apiKey: 'AIzaSyBYY6vxi0iXxDiRSyVRzd6lwVIcbFdKswU',
+    apiKey: 'YOUR_API_KEY',
   };
   const { latitude, longitude, timestamp, loading, error, googleMapsResults } = useGeoLocation(useGoogleMaps ? options : {});
 
   const renderLoading = () => <h1 data-testid="loading">Loading...</h1>;
 
-  const printResults = React.memo(({ data }: { data: GoogleMapsResults }) => (
+  const GoogleResults = React.memo(({ data }: { data: GoogleMapsResults }) => (
     <div>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
@@ -25,7 +25,7 @@ export const Demo = ({ watch = false, useGoogleMaps = false }: { watch?: boolean
         <li>Longitude: {longitude}</li>
         <li>Timestamp: {timestamp}</li>
       </ul>
-      {googleMapsResults && printResults({ data: googleMapsResults })}
+      {googleMapsResults && <GoogleResults data={googleMapsResults} />}
     </>
   );
 
