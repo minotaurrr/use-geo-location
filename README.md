@@ -1,6 +1,8 @@
 [![minotaurrr](https://circleci.com/gh/minotaurrr/use-geo-location.svg?style=shield)](https://github.com/minotaurrr/use-geo-location)
 
-Custom react hook for getting user's geo location. Supports TypeScript by default.
+Custom react hook for getting user's geo location.
+Google Maps Geocoding API can also be used by providing a valid API key to the hook.
+Supports TypeScript by default.
 
 # Installation
 
