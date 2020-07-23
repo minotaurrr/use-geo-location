@@ -8,7 +8,6 @@ const defaultConfig: Config = {
   maximumAge: 10000,
 };
 
-// TODO: add google maps support to get state value from coords
 export const useGeoLocation = ({
   watch = true,
   config = defaultConfig,
@@ -17,7 +16,7 @@ export const useGeoLocation = ({
   watch?: boolean;
   config?: Config;
   apiKey?: string;
-}) => {
+} = {}) => {
   const [latitude, setLatitude] = useState<number | undefined>();
   const [longitude, setLongitude] = useState<number | undefined>();
   const [timestamp, setTimestamp] = useState<number | undefined>();
