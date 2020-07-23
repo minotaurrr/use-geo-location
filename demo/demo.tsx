@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useGeoLocation } from 'useGeoLocation';
-import { GeoLocationOptions } from 'use-geo-location';
+import { GeoLocationOptions, GoogleMapsResults } from 'use-geo-location';
 
 export const Demo = ({ watch = false, useGoogleMaps = false }: { watch?: boolean; useGoogleMaps?: boolean }) => {
   const options: GeoLocationOptions = {
@@ -11,13 +11,22 @@ export const Demo = ({ watch = false, useGoogleMaps = false }: { watch?: boolean
 
   const renderLoading = () => <h1 data-testid="loading">Loading...</h1>;
 
+  const printResults = React.memo(({ data }: { data: GoogleMapsResults }) => (
+    <div>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  ));
+
   const renderGeoLocation = () => (
-    <ul data-testid="geo-location">
-      <li>Watching: {watch ? 'Following user location' : 'Not following user location'} </li>
-      <li>Latitude: {latitude}</li>
-      <li>Longitude: {longitude}</li>
-      <li>Timestamp: {timestamp}</li>
-    </ul>
+    <>
+      <ul data-testid="geo-location">
+        <li>Watching: {watch ? 'Following user location' : 'Not following user location'} </li>
+        <li>Latitude: {latitude}</li>
+        <li>Longitude: {longitude}</li>
+        <li>Timestamp: {timestamp}</li>
+      </ul>
+      {googleMapsResults && printResults({ data: googleMapsResults })}
+    </>
   );
 
   const renderError = ({ message }: { message: string }) => <h1 data-testid="error">{message}</h1>;

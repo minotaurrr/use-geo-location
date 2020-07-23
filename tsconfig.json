@@ -17,5 +17,5 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["src", "demo", "stories", "src/index.d.ts", "googleMaps.spec.ts"]
+  "include": ["src", "demo", "stories", "src/index.d.ts"]
 }

@@ -5,7 +5,7 @@
     "email": "minkim030@gmail.com",
     "url": "https://www.linkedin.com/in/min-kim-b8b110b8"
   },
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "description": "Custom react hook for getting user's location",
   "main": "dist/useGeoLocation.min.js",
