@@ -37,13 +37,23 @@ class GoogleMaps {
       components && `&components=${this.buildComponents(components)}`
     }`;
 
-    return await this.getResults(url);
+    try {
+      const result = await this.getResults(url);
+      return result;
+    } catch (err) {
+      throw err;
+    }
   }
 
   async searchByLatLon({ latitude, longitude }: { latitude: number; longitude: number }) {
     const url = `${this.GOOGLE_API}?latlng=${`${latitude},${longitude}`}&key=${this.API_KEY}`;
 
-    return await this.getResults(url);
+    try {
+      const result = await this.getResults(url);
+      return result;
+    } catch (err) {
+      throw err;
+    }
   }
 }
 

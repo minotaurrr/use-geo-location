@@ -49,8 +49,12 @@ export const useGeoLocation = ({
       setTimestamp(pos.timestamp);
       if (apiKey) {
         const gm = new GoogleMaps({ apiKey });
-        const res = await gm.searchByLatLon({ latitude, longitude });
-        setGoogleMapsResults(res);
+        try {
+          const res = await gm.searchByLatLon({ latitude, longitude });
+          setGoogleMapsResults(res);
+        } catch (err) {
+          setError(err);
+        }
       }
       setLoading(false);
     };

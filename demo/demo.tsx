@@ -2,16 +2,12 @@ import React, { useEffect } from 'react';
 import { useGeoLocation } from 'useGeoLocation';
 import { GeoLocationOptions } from 'use-geo-location';
 
-export const Demo = ({ watch = false }: { watch?: boolean }) => {
+export const Demo = ({ watch = false, useGoogleMaps = false }: { watch?: boolean; useGoogleMaps?: boolean }) => {
   const options: GeoLocationOptions = {
     watch,
     apiKey: 'AIzaSyBYY6vxi0iXxDiRSyVRzd6lwVIcbFdKswU',
   };
-  const { latitude, longitude, timestamp, loading, error, googleMapsResults } = useGeoLocation(options);
-
-  useEffect(() => {
-    console.log(googleMapsResults);
-  }, [googleMapsResults]);
+  const { latitude, longitude, timestamp, loading, error, googleMapsResults } = useGeoLocation(useGoogleMaps ? options : {});
 
   const renderLoading = () => <h1 data-testid="loading">Loading...</h1>;
 
