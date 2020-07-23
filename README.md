@@ -16,7 +16,7 @@ $ npm i use-geo-location
 
 # Basic Usage
 
-Refer to https://developers.google.com/maps/documentation/geocoding/overview?hl=en_GB#ReverseGeocoding for Google Maps response.
+Refer to [this link](https://developers.google.com/maps/documentation/geocoding/overview?hl=en_GB#ReverseGeocoding) for Google Maps response.
 
 ```
 import React from 'react';
@@ -47,6 +47,8 @@ const TestComponent = () => {
 
 ### `useGeoLocation()`
 
+The following can be provided as options:
+
 | Param  | Optional | Type                                                                    |
 | :----- | :------- | :---------------------------------------------------------------------- |
 | apiKey | Yes      | string                                                                  |
@@ -54,6 +56,7 @@ const TestComponent = () => {
 | config | Yes      | `{ enableHighAccuracy: boolean; timeout: number; maximumAge: number; }` |
 
 ```
+// e.g.
 const config = {
   enableHighAccuracy: false, // default value is false
   timeout: 10000, // default value is 10000
@@ -70,6 +73,27 @@ useGeoLocation({ watch: true, config, apiKey }) // watch is set to `false` by de
 - `timeout` is the length of time allowed in milliseconds until it gets the user's coords back
 
 - `maximumAge` is the length of time in milleseconds until it retries to get user's location. Setting this value to `0` means it will immediately attempt to acquire user's location.
+
+`useGeoLocation()` will return the following:
+
+| Value             | Type                            | Description                                                |
+| :---------------- | :------------------------------ | :--------------------------------------------------------- |
+| latitude          | `number | undefined`            | user's latitude                                            |
+| longitude         | `number | undefined`            | user's longitude                                           |
+| loading           | `boolean`                       | loading status                                             |
+| error             | `Error`                         | any error caught from fetching location                    |
+| timestamp         | `number | undefined`            | unix timestamp of whem user location was last fetched      |
+| googleMapsResults | `GoogleMapsResults | undefined` | google maps api response for user's latitude and longitude |
+
+### GoogleMapsResults
+
+| Value     | Type     |
+| :-------- | :------- |
+| plus_code | `any`    |
+| status    | `string` |
+| results   | `any[]`  |
+
+Please refer to [this link](https://developers.google.com/maps/documentation/geocoding/overview?hl=en_GB) for details on what Google Maps API returns.
 
 ### Watch parameter
 
