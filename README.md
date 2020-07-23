@@ -76,14 +76,14 @@ useGeoLocation({ watch: true, config, apiKey }) // watch is set to `false` by de
 
 `useGeoLocation()` will return the following:
 
-| Value             | Type                            | Description                                                |
-| :---------------- | :------------------------------ | :--------------------------------------------------------- |
-| latitude          | `number | undefined`            | user's latitude                                            |
-| longitude         | `number | undefined`            | user's longitude                                           |
-| loading           | `boolean`                       | loading status                                             |
-| error             | `Error`                         | any error caught from fetching location                    |
-| timestamp         | `number | undefined`            | unix timestamp of whem user location was last fetched      |
-| googleMapsResults | `GoogleMapsResults | undefined` | google maps api response for user's latitude and longitude |
+| Value             | Type                             | Description                                                |
+| :---------------- | :------------------------------- | :--------------------------------------------------------- |
+| latitude          | `number \| undefined`            | user's latitude                                            |
+| longitude         | `number \| undefined`            | user's longitude                                           |
+| loading           | `boolean`                        | loading status                                             |
+| error             | `Error`                          | any error caught from fetching location                    |
+| timestamp         | `number \| undefined`            | unix timestamp of whem user location was last fetched      |
+| googleMapsResults | `GoogleMapsResults \| undefined` | google maps api response for user's latitude and longitude |
 
 ### GoogleMapsResults
 
