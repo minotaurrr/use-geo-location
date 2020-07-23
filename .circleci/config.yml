@@ -27,7 +27,10 @@ jobs:
 workflows:
   CI-workflow:
     jobs:
-      - build-and-test
+      - build-and-test:
+        filters:
+          tags:
+            only: /.*/
       - hold:
           type: approval
           requires:
