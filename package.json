@@ -22,12 +22,13 @@
     "typescript": "~3.9.5"
   },
   "scripts": {
-    "storybook": "start-storybook",
+    "storybook": "start-storybook -p 9009",
     "test": "react-scripts test --env=jsdom-fourteen",
     "lint": "prettier './src/**/*.{js,ts,tsx}' --write",
     "build": "rollup -c",
     "snyk-protect": "snyk protect",
-    "prepare": "yarn run snyk-protect"
+    "prepare": "yarn run snyk-protect",
+    "build-storybook": "build-storybook"
   },
   "husky": {
     "hooks": {
@@ -47,7 +48,12 @@
     "@babel/preset-react": "^7.10.4",
     "@rollup/plugin-babel": "^5.1.0",
     "@rollup/plugin-typescript": "^5.0.2",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-docs": "^5.3.19",
     "@storybook/addon-info": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/preset-create-react-app": "^3.1.4",
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^5.3.19",
     "@testing-library/jest-dom": "^5.11.0",
