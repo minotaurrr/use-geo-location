@@ -1,22 +1,31 @@
 import { useState, useEffect } from 'react';
-import { Config } from 'use-geo-location';
+import { Config, GoogleMapsResults } from 'use-geo-location';
+import GoogleMaps from 'googleMaps';
 
 const defaultConfig: Config = {
   enableHighAccuracy: false,
   timeout: 10000,
-  maximumAge: 0,
+  maximumAge: 10000,
 };
 
 // TODO: add google maps support to get state value from coords
-export const useGeoLocation = ({ watch = false, config = defaultConfig }: { watch?: boolean; config?: Config } = {}) => {
+export const useGeoLocation = ({
+  watch = true,
+  config = defaultConfig,
+  apiKey = undefined,
+}: {
+  watch?: boolean;
+  config?: Config;
+  apiKey?: string;
+}) => {
   const [latitude, setLatitude] = useState<number | undefined>();
   const [longitude, setLongitude] = useState<number | undefined>();
   const [timestamp, setTimestamp] = useState<number | undefined>();
   const [error, setError] = useState<PositionError | undefined>();
   const [loading, setLoading] = useState(false);
+  const [googleMapsResults, setGoogleMapsResults] = useState<GoogleMapsResults>();
 
   useEffect(() => {
-    console.log('render');
     setLoading(true);
     const geo = navigator.geolocation;
 
@@ -32,13 +41,22 @@ export const useGeoLocation = ({ watch = false, config = defaultConfig }: { watc
       return setError(positionError);
     }
 
-    const onSuccess: PositionCallback = (pos: Position) => {
+    const onSuccess: PositionCallback = async (pos: Position) => {
       const { latitude, longitude } = pos.coords;
       setLatitude(latitude);
       setLongitude(longitude);
       setError(undefined);
-      setLoading(false);
       setTimestamp(pos.timestamp);
+      if (apiKey) {
+        const gm = new GoogleMaps({ apiKey });
+        try {
+          const res = await gm.searchByLatLon({ latitude, longitude });
+          setGoogleMapsResults(res);
+        } catch (err) {
+          setError(err);
+        }
+      }
+      setLoading(false);
     };
 
     const onError: PositionErrorCallback = (err: PositionError) => {
@@ -56,7 +74,7 @@ export const useGeoLocation = ({ watch = false, config = defaultConfig }: { watc
     return () => {
       watcher && geo.clearWatch(watcher);
     };
-  }, [watch, config]);
+  }, [watch, config, apiKey]);
 
-  return { latitude, longitude, timestamp, loading, error };
+  return { latitude, longitude, timestamp, loading, error, googleMapsResults };
 };

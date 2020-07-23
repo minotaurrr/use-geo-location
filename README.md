@@ -16,12 +16,15 @@ $ npm i use-geo-location
 
 # Basic Usage
 
+Refer to https://developers.google.com/maps/documentation/geocoding/overview?hl=en_GB#ReverseGeocoding for Google Maps response.
+
 ```
 import React from 'react';
 import { useGeoLocation } from 'use-geo-location';
 
 const TestComponent = () => {
-  const { latitude, longitude, loading, error, timestamp } = useGeoLocation();
+  const apiKey = 'YOUR_GOOGLE_MAPS_API_KEY';
+  const { latitude, longitude, loading, error, timestamp, googleMapsResults } = useGeoLocation({ apiKey }); // apiKey is optional
 
   return (
     <>
@@ -40,9 +43,15 @@ const TestComponent = () => {
 
 ```
 
-# Description
+# Function description
 
-`useGeoLocation()` can take an options parameter like below:
+### `useGeoLocation()`
+
+| Param  | Optional | Type                                                                    |
+| :----- | :------- | :---------------------------------------------------------------------- |
+| apiKey | Yes      | string                                                                  |
+| watch  | Yes      | boolean                                                                 |
+| config | Yes      | `{ enableHighAccuracy: boolean; timeout: number; maximumAge: number; }` |
 
 ```
 const config = {
@@ -50,7 +59,8 @@ const config = {
   timeout: 10000, // default value is 10000
   maximumAge: 0, // default value is 0
 }
-useGeoLocation({ watch: true, config }) // watch is set to `false` by default
+const apiKey = 'YOUR_GOOGLE_MAPS_API_KEY'
+useGeoLocation({ watch: true, config, apiKey }) // watch is set to `false` by default
 ```
 
 ### Options

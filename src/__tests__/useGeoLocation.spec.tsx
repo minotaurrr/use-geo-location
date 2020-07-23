@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor, wait } from '@testing-library/react';
 import { Demo } from '../../demo/demo';
 
 const mockPosition = {
