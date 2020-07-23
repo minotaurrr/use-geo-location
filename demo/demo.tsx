@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useGeoLocation } from 'useGeoLocation';
+import { GeoLocationOptions } from 'use-geo-location';
 
-export const Demo = ({ watch = true }: { watch?: boolean }) => {
-  const { latitude, longitude, timestamp, loading, error } = useGeoLocation();
+export const Demo = ({ watch = false }: { watch?: boolean }) => {
+  const options: GeoLocationOptions = {
+    watch,
+    apiKey: 'AIzaSyBYY6vxi0iXxDiRSyVRzd6lwVIcbFdKswU',
+  };
+  const { latitude, longitude, timestamp, loading, error, googleMapsResults } = useGeoLocation(options);
+
+  useEffect(() => {
+    console.log(googleMapsResults);
+  }, [googleMapsResults]);
 
   const renderLoading = () => <h1 data-testid="loading">Loading...</h1>;
 
@@ -20,22 +29,4 @@ export const Demo = ({ watch = true }: { watch?: boolean }) => {
   const renderContent = () => (loading ? renderLoading() : renderGeoLocation());
 
   return <div>{error ? renderError({ message: error.message }) : renderContent()}</div>;
-};
-
-const TestComponent = () => {
-  const { latitude, longitude, loading, error, timestamp } = useGeoLocation();
-
-  return (
-    <>
-      {loading ? (
-        <span>Loading...</span>
-      ) : (
-        <div>
-          <span>latitude: {latitude}</span>
-          <br />
-          <span>longitude: {longitude}</span>
-        </div>
-      )}
-    </>
-  );
 };
