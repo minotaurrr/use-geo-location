@@ -102,7 +102,7 @@ If it's set to true, it will fetch user's position on render and cache it. The c
 
 # Error handling
 
-There are two main types of error `useGeoLocation()` can throw.
+There are two main types of error `useGeoLocation()` can return.
 
 ### GeolocationPositonError
 
