@@ -11,7 +11,7 @@ declare module 'use-geo-location' {
     loading: boolean;
     error: PositionError;
     timestamp: number;
-    googleMapsLocation?: GoogleMapsResults;
+    googleMapsResults?: GoogleMapsResults;
   }
 
   export interface GoogleMapsResults {
