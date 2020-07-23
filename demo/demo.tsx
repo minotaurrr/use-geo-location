@@ -2,7 +2,7 @@ import React from 'react';
 import { useGeoLocation } from 'useGeoLocation';
 import { GeoLocationOptions, GoogleMapsResults } from 'use-geo-location';
 
-export const Demo = ({ watch = false, useGoogleMaps = true }: { watch?: boolean; useGoogleMaps?: boolean }) => {
+export const Demo = ({ watch = false, useGoogleMaps = false }: { watch?: boolean; useGoogleMaps?: boolean }) => {
   const options: GeoLocationOptions = {
     watch,
     apiKey: 'YOUR_API_KEY',
