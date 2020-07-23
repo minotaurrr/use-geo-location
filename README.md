@@ -102,7 +102,10 @@ If it's set to true, it will fetch user's position on render and cache it. The c
 
 # Error handling
 
-The `error` object returned from `useGeoLocation()` is an instance of `GeolocationPositionError`.
+There are two main types of error `useGeoLocation()` can throw.
+
+### GeolocationPositonError
+
 Please see https://developer.mozilla.org/en-US/docs/Web/API/GeolocationPositionError for details.
 
 When geo location is not available on user's device, it will return the following error.
@@ -116,6 +119,21 @@ When geo location is not available on user's device, it will return the followin
   TIMEOUT: 3,
 }
 ```
+
+### Google Maps API Error
+
+Refer to [this link](https://developers.google.com/maps/documentation/geocoding/overview?hl=en_GB#ErrorMessages) for details on Google Maps API errors.
+Here's a short summary of status message.
+
+| Status             | Description                                                                                                                                                                                                                                                                                           |
+| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `OK`               | indicates that no errors occurred; the address was successfully parsed and at least one geocode was returned.                                                                                                                                                                                         |
+| `ZERO_RESULTS`     | indicates that the geocode was successful but returned no results. This may occur if the geocoder was passed a non-existent address.                                                                                                                                                                  |
+| `OVER_DAILY_LIMIT` | indicates any of the following:<br><ul><li>The API key is missing or invalid.</li><li>Billing has not been enabled on your account.</li><li>A self-imposed usage cap has been exceeded.</li><li>The provided method of payment is no longer valid (for example, a credit card has expired).</li></ul> |
+| `OVER_QUERY_LIMIT` | indicates that you are over your quota.                                                                                                                                                                                                                                                               |
+| `REQUEST_DENIED`   | indicates that your request was denied.                                                                                                                                                                                                                                                               |
+| `INVALID_REQUEST`  | generally indicates that the query (address, components or latlng) is missing.                                                                                                                                                                                                                        |
+| `UNKNOWN_ERROR`    | indicates that the request could not be processed due to a server error. The request may succeed if you try again.                                                                                                                                                                                    |
 
 # Testing
 
