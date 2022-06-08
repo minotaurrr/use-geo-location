@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Config, GoogleMapsResults } from 'use-geo-location';
+import { Config, GoogleMapsResults, Position } from 'use-geo-location';
 import GoogleMaps from 'googleMaps';
 
 const defaultConfig: Config = {
@@ -20,7 +20,7 @@ export const useGeoLocation = ({
   const [latitude, setLatitude] = useState<number | undefined>();
   const [longitude, setLongitude] = useState<number | undefined>();
   const [timestamp, setTimestamp] = useState<number | undefined>();
-  const [error, setError] = useState<PositionError | undefined>();
+  const [error, setError] = useState<GeolocationPositionError | Error>();
   const [loading, setLoading] = useState(false);
   const [googleMapsResults, setGoogleMapsResults] = useState<GoogleMapsResults>();
 
@@ -29,15 +29,9 @@ export const useGeoLocation = ({
     const geo = navigator.geolocation;
 
     if (!geo) {
-      const positionError: PositionError = {
-        code: -1,
-        message: 'Geolocation not available',
-        PERMISSION_DENIED: 1,
-        POSITION_UNAVAILABLE: 2,
-        TIMEOUT: 3,
-      };
+      const error = new Error('Geolocation not available');
       setLoading(false);
-      return setError(positionError);
+      return setError(error);
     }
 
     const onSuccess: PositionCallback = async (pos: Position) => {
@@ -52,13 +46,13 @@ export const useGeoLocation = ({
           const res = await gm.searchByLatLon({ latitude, longitude });
           setGoogleMapsResults(res);
         } catch (err) {
-          setError(err);
+          setError(err as Error);
         }
       }
       setLoading(false);
     };
 
-    const onError: PositionErrorCallback = (err: PositionError) => {
+    const onError: PositionErrorCallback = (err: GeolocationPositionError) => {
       setError(err);
       setLoading(false);
     };

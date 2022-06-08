@@ -6,7 +6,7 @@ describe('Google Maps API', () => {
     try {
       await gm.searchByLatLon({ latitude: 1, longitude: 1 });
     } catch (err) {
-      expect(err.message).toEqual('REQUEST_DENIED');
+      expect((err as Error).message).toEqual('REQUEST_DENIED');
     }
   });
 });
