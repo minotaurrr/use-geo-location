@@ -1,9 +1,11 @@
 version: 2.1
 orbs:
-  node: circleci/node@3.0.1
+  node: circleci/node@5.0.2
 jobs:
   build-and-test:
-    executor: node/default
+    executor:
+      name: node/default
+      tag: '16.15.1'
     steps:
       - checkout
       - node/install-packages:
@@ -12,7 +14,9 @@ jobs:
           name: 'Build and test'
           command: 'yarn test'
   publish:
-    executor: node/default
+    executor:
+      name: node/default
+      tag: '16.15.1'
     steps:
       - checkout
       - node/install-packages:
