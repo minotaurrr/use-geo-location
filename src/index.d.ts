@@ -5,6 +5,21 @@ declare module 'use-geo-location' {
     maximumAge: number;
   }
 
+  type POSITION_DENIED_ERROR_CODE = 1;
+  type POSITION_UNAVAILABLE_ERROR_CODE = 2;
+  type TIMEOUT_ERROR_CODE = 3;
+
+  interface Coordinate {
+    latitude: number;
+    longitude: number;
+    accuracy: number;
+  }
+
+  interface Position {
+    coords: Coordinate;
+    timestamp: number;
+  }
+
   interface Location {
     latitude: number;
     longitude: number;
