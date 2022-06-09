@@ -25,21 +25,12 @@ import React from 'react';
 import { useGeoLocation } from 'use-geo-location';
 
 const TestComponent = () => {
+  // apiKey is optional, you can still get latitude/longitude without it
   const apiKey = 'YOUR_GOOGLE_MAPS_API_KEY';
-  const { latitude, longitude, loading, error, timestamp, googleMapsResults } = useGeoLocation({ apiKey }); // apiKey is optional
+  const { latitude, longitude, loading, error, timestamp, googleMapsResults } = useGeoLocation({ apiKey });
 
   return (
-    <>
-      {loading ? (
-        <span>Loading...</span>
-      ) : (
-        <div>
-          <span>latitude: {latitude}</span>
-          <br />
-          <span>longitude: {longitude}</span>
-        </div>
-      )}
-    </>
+    ...
   );
 };
 
@@ -51,11 +42,11 @@ const TestComponent = () => {
 
 The following can be provided as options:
 
-| Param  | Optional | Type                                                                    |
+| Param  | Required | Type                                                                    |
 | :----- | :------- | :---------------------------------------------------------------------- |
-| apiKey | Yes      | string                                                                  |
-| watch  | Yes      | boolean                                                                 |
-| config | Yes      | `{ enableHighAccuracy: boolean; timeout: number; maximumAge: number; }` |
+| apiKey | No       | string                                                                  |
+| watch  | No       | boolean                                                                 |
+| config | No       | `{ enableHighAccuracy: boolean; timeout: number; maximumAge: number; }` |
 
 ```
 // e.g.
